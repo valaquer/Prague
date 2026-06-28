@@ -1,27 +1,19 @@
-"use client";
+import { createClient } from "@/lib/supabase/server";
+import { redirect } from "next/navigation";
+import LogoutButton from "./logout-button";
 
-import { createClient } from "@/lib/supabase/client";
-import { useRouter } from "next/navigation";
+export default async function DashboardPage() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
 
-export default function DashboardPage() {
-  const router = useRouter();
-  const supabase = createClient();
-
-  async function handleLogout() {
-    await supabase.auth.signOut();
-    router.push("/");
-    router.refresh();
+  if (!user) {
+    redirect("/login");
   }
 
   return (
     <div className="min-h-screen">
       <div className="flex justify-end p-4">
-        <button
-          onClick={handleLogout}
-          className="rounded bg-foreground text-background px-4 py-2 font-medium"
-        >
-          Logout
-        </button>
+        <LogoutButton />
       </div>
     </div>
   );
