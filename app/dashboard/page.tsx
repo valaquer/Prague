@@ -26,13 +26,8 @@ export default async function DashboardPage() {
       <Sidebar />
       <div className="flex-1 flex flex-col">
         {/* Top bar */}
-        <header className="flex items-center justify-between px-6 py-3 border-b border-white/10">
-          <span
-            className="text-lg tracking-wide text-[#E8E4DF]"
-            style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-          >
-            provoque.ai
-          </span>
+        <header className="flex items-center justify-between px-6 py-4 border-b border-[#E8E4DF]/[0.08]">
+          <img src="/provoque-wordmark-000337.svg" alt="provoque.ai" style={{ height: "28px", width: "auto" }} />
           <LogoutButton />
         </header>
         <CharacterGrid

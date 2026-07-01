@@ -52,24 +52,25 @@ export default function CharacterGrid({
     router.push(`/chat/${conversationId}`);
   }
 
-  // Filter pills (non-functional)
-  const pills = ["All", "Popular", "New", "Romantic", "Fun", "Fantasy", "Caring", "Bold"];
+  // Filter pills — empty, varying widths (from Andrea's wireframe)
+  const pillWidths = [48, 72, 80, 64, 76, 68, 84, 72];
 
   return (
-    <div className="flex-1 overflow-y-auto p-6">
+    <div className="flex-1 overflow-y-auto px-8 py-6">
       {/* Filter pills */}
-      <div className="flex gap-2 mb-6">
-        {pills.map((pill, i) => (
-          <button
-            key={pill}
-            className={`rounded-full px-4 py-1.5 text-sm transition-colors ${
-              i === 0
-                ? "bg-[#AE0D46] text-white"
-                : "bg-white/5 text-[#E8E4DF]/60 hover:bg-white/10"
-            }`}
-          >
-            {pill}
-          </button>
+      <div className="flex gap-2 mb-7 flex-wrap">
+        {pillWidths.map((w, i) => (
+          <div
+            key={i}
+            className="h-[34px] rounded-full"
+            style={{
+              width: `${w}px`,
+              border: i === 0
+                ? "1px solid #AE0D46"
+                : "1px solid rgba(232,228,223,0.15)",
+              background: i === 0 ? "rgba(174,13,70,0.15)" : "transparent",
+            }}
+          />
         ))}
       </div>
 
@@ -80,24 +81,23 @@ export default function CharacterGrid({
             key={character.id}
             onClick={() => handleCardClick(character)}
             disabled={loadingId === character.id}
-            className="group text-left transition-transform hover:scale-[1.02] disabled:opacity-50"
+            className="text-left rounded-xl overflow-hidden transition-colors disabled:opacity-50"
+            style={{ background: "rgba(232,228,223,0.04)" }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(232,228,223,0.08)")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(232,228,223,0.04)")}
           >
-            {/* 3:4 placeholder */}
-            <div className="aspect-[3/4] rounded-xl bg-white/5 mb-2 overflow-hidden group-hover:bg-white/10 transition-colors flex items-center justify-center">
-              {loadingId === character.id ? (
-                <span className="text-[#E8E4DF]/40 text-sm">Opening...</span>
-              ) : (
-                <span className="text-[#E8E4DF]/20 text-4xl">
-                  {character.name[0]}
-                </span>
-              )}
+            <div
+              className="aspect-[3/4]"
+              style={{ background: "rgba(232,228,223,0.03)" }}
+            />
+            <div className="px-3.5 py-3">
+              <span
+                className="text-[#E8E4DF] text-base font-medium"
+                style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
+              >
+                {character.name}
+              </span>
             </div>
-            <p
-              className="text-[#E8E4DF] text-sm"
-              style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-            >
-              {character.name}
-            </p>
           </button>
         ))}
       </div>

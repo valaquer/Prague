@@ -1,32 +1,29 @@
 "use client";
 
-const navItems = [
-  { label: "Home", icon: "🏠" },
-  { label: "Discover", icon: "🔍" },
-  { label: "Chat", icon: "💬" },
-  { label: "Collection", icon: "📁" },
-  { label: "Create Character", icon: "✨" },
-  { label: "My AI", icon: "🤖" },
-];
+const navItems = ["Home", "Discover", "Chat", "Collection", "Create Character", "My AI"];
 
 export default function Sidebar() {
   return (
-    <aside className="w-[200px] shrink-0 flex flex-col border-r border-white/10 px-3 py-4">
+    <aside className="w-[200px] min-w-[200px] flex flex-col border-r border-[#E8E4DF]/[0.08] px-4 py-5 gap-1">
       <nav className="flex flex-col gap-1 flex-1">
         {navItems.map((item) => (
-          <button
-            key={item.label}
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-[#E8E4DF]/70 hover:bg-white/5 hover:text-[#E8E4DF] transition-colors text-left"
+          <div
+            key={item}
+            className="text-[13px] px-3 py-2.5 rounded-lg cursor-pointer"
+            style={{
+              color: item === "Home" ? "#E8E4DF" : "rgba(232,228,223,0.5)",
+              background: item === "Home" ? "rgba(232,228,223,0.06)" : "transparent",
+            }}
           >
-            <span className="text-base">{item.icon}</span>
-            {item.label}
-          </button>
+            {item}
+          </div>
         ))}
       </nav>
-      <button className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-[#AE0D46] hover:bg-[#AE0D46]/10 transition-colors text-left">
-        <span className="text-base">⭐</span>
-        Premium
-      </button>
+      <div className="mt-auto pt-6 border-t border-[#E8E4DF]/[0.06]">
+        <div className="text-[13px] text-[#AE0D46] px-3 py-2.5 cursor-pointer">
+          Premium
+        </div>
+      </div>
     </aside>
   );
 }
