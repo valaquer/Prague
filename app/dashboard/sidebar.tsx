@@ -29,11 +29,6 @@ export default function Sidebar() {
           {item}
         </div>
       ))}
-      <div style={{ marginTop: "auto", paddingTop: "24px", borderTop: "1px solid rgba(232,228,223,0.06)" }}>
-        <div style={{ fontSize: "13px", color: "#AE0D46", padding: "10px 12px", cursor: "pointer" }}>
-          Premium
-        </div>
-      </div>
     </div>
   );
 }

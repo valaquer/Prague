@@ -79,23 +79,24 @@ export default function CharacterGrid({
             key={character.id}
             onClick={() => !loadingId && handleCardClick(character)}
             style={{
-              background: "rgba(232,228,223,0.04)",
+              background: "#E8E4DF",
+              border: "1px solid #E8E4DF",
               borderRadius: "12px",
               overflow: "hidden",
               cursor: loadingId === character.id ? "wait" : "pointer",
               transition: "background 0.2s",
               opacity: loadingId === character.id ? 0.5 : 1,
             }}
-            onMouseEnter={(e) => { if (!loadingId) e.currentTarget.style.background = "rgba(232,228,223,0.08)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(232,228,223,0.04)"; }}
+            onMouseEnter={(e) => { if (!loadingId) e.currentTarget.style.background = "#ffffff"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = "#E8E4DF"; }}
           >
-            <div style={{ aspectRatio: "3/4", background: "rgba(232,228,223,0.03)" }} />
+            <div style={{ aspectRatio: "3/4", background: "rgba(0,0,0,0.1)" }} />
             <div style={{ padding: "12px 14px" }}>
               <span style={{
                 fontFamily: "'Cormorant Garamond', Georgia, serif",
                 fontSize: "16px",
                 fontWeight: 500,
-                color: "#E8E4DF",
+                color: "#0B0D10",
               }}>
                 {character.name}
               </span>
